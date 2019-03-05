@@ -180,8 +180,8 @@ peer# CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer
 2019-02-28 09:41:53.494 UTC [channelCmd] update -> INFO 002 Successfully submitted channel update
 ```
 
-### Install & Instantiate Chaincode
-* Install Golang
+### Install Chaincode
+* Golang
 ```bash
 # Org1
 peer# peer chaincode install -n mycc -v 1.0 -p github.com/chaincode/chaincode_example02/go/
@@ -196,27 +196,28 @@ peer# CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer
 2019-02-28 09:52:20.064 UTC [chaincodeCmd] checkChaincodeCmdParams -> INFO 002 Using default vscc
 2019-02-28 09:52:20.267 UTC [chaincodeCmd] install -> INFO 003 Installed remotely response:<status:200 payload:"OK" >
 ```
-* Install Node.js
+* Node.js
 ```bash
 peer# peer chaincode install -n mycc -v 1.0 -l node -p /opt/gopath/src/github.com/chaincode/chaincode_example02/node/
 ```
-* Install Java
+* Java
 ```bash
 peer# peer chaincode install -n mycc -v 1.0 -l java -p /opt/gopath/src/github.com/chaincode/chaincode_example02/java/
 ```
 
-* Instantiate Golang
+### Instantiate Chaincode
+* Golang
 ```bash
 peer# peer chaincode instantiate -o orderer.example.com:7050 --tls --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C $CHANNEL_NAME -n mycc -v 1.0 -c '{"Args":["init","a", "100", "b","200"]}' -P "AND ('Org1MSP.peer','Org2MSP.peer')"
 # output
 2019-02-28 09:59:39.755 UTC [chaincodeCmd] checkChaincodeCmdParams -> INFO 001 Using default escc
 2019-02-28 09:59:39.755 UTC [chaincodeCmd] checkChaincodeCmdParams -> INFO 002 Using default vscc
 ```
-* Instantiate Node.js
+* Node.js
 ```bash
 peer# peer chaincode instantiate -o orderer.example.com:7050 --tls --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C $CHANNEL_NAME -n mycc -l node -v 1.0 -c '{"Args":["init","a", "100", "b","200"]}' -P "AND ('Org1MSP.peer','Org2MSP.peer')"
 ```
-* Instantiate Java
+* Java
 ```bash
 peer# peer chaincode instantiate -o orderer.example.com:7050 --tls --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C $CHANNEL_NAME -n mycc -l java -v 1.0 -c '{"Args":["init","a", "100", "b","200"]}' -P "AND ('Org1MSP.peer','Org2MSP.peer')"
 ```
