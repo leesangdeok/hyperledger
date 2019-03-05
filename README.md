@@ -61,7 +61,7 @@ $ ./byfn.sh up -l java
 ```bash
 $ ./byfn.sh down
 ```
-
+## Building Your First Network (수동설정)
 ### Configuration Transaction 생성
 * MSP 생성  
 orderer, peer user 클라이언트 정보 생성
