@@ -68,8 +68,8 @@ orderer, peer user 클라이언트 정보 생성
 ```bash
 $ ../bin/cryptogen generate --config=./crypto-config.yaml
 # outpurt
-org1.example.com
-org2.example.com
+# org1.example.com
+# org2.example.com
 
 # 환경설정
 $ export FABRIC_CFG_PATH=$PWD
@@ -79,31 +79,32 @@ $ export FABRIC_CFG_PATH=$PWD
 하이퍼레저 패브릭 컨소시엄과 채널 정보가 담긴 genesis.block 생성
 ```bash
 $ ../bin/configtxgen -profile TwoOrgsOrdererGenesis -channelID byfn-sys-channel -outputBlock ./channel-artifacts/genesis.block
-#output (channel-artifacts 디렉토리에 genesis block생성)
-2019-02-28 16:01:00.823 KST [common.tools.configtxgen] main -> INFO 001 Loading configuration
-2019-02-28 16:01:00.845 KST [common.tools.configtxgen.localconfig] completeInitialization -> INFO 002 orderer type: solo
-2019-02-28 16:01:00.845 KST [common.tools.configtxgen.localconfig] Load -> INFO 003 Loaded configuration: /tmp/fabric-samples/first-network/configtx.yaml
-2019-02-28 16:01:00.867 KST [common.tools.configtxgen.localconfig] completeInitialization -> INFO 004 orderer type: solo
-2019-02-28 16:01:00.867 KST [common.tools.configtxgen.localconfig] LoadTopLevel -> INFO 005 Loaded configuration: /tmp/fabric-samples/first-network/configtx.yaml
-2019-02-28 16:01:00.870 KST [common.tools.configtxgen] doOutputBlock -> INFO 006 Generating genesis block
-2019-02-28 16:01:00.870 KST [common.tools.configtxgen] doOutputBlock -> INFO 007 Writing genesis block
+# output 
+# channel-artifacts 디렉토리에 genesis block생성
+# 2019-02-28 16:01:00.823 KST [common.tools.configtxgen] main -> INFO 001 Loading configuration
+# 2019-02-28 16:01:00.845 KST [common.tools.configtxgen.localconfig] completeInitialization -> INFO 002 orderer type: solo
+# 2019-02-28 16:01:00.845 KST [common.tools.configtxgen.localconfig] Load -> INFO 003 Loaded configuration: /tmp/fabric-samples/first-network/configtx.yaml
+# 2019-02-28 16:01:00.867 KST [common.tools.configtxgen.localconfig] completeInitialization -> INFO 004 orderer type: solo
+# 2019-02-28 16:01:00.867 KST [common.tools.configtxgen.localconfig] LoadTopLevel -> INFO 005 Loaded configuration: /tmp/fabric-samples/first-network/configtx.yaml
+# 2019-02-28 16:01:00.870 KST [common.tools.configtxgen] doOutputBlock -> INFO 006 Generating genesis block
+# 2019-02-28 16:01:00.870 KST [common.tools.configtxgen] doOutputBlock -> INFO 007 Writing genesis block
 ```
 
 * 채널 설정  
-configtx.yaml의 TwoOrgsChannel을 참조하여 채널 구축을 위한 channel.tx 트랜젝션 생성
+configtx.yaml의 TwoOrgsChannel을 참조하여 채널 구축을 위한 channel.tx 트랜잭션 생성
 ```bash
 $ export CHANNEL_NAME=mychannel  && ../bin/configtxgen -profile TwoOrgsChannel -outputCreateChannelTx ./channel-artifacts/channel.tx -channelID $CHANNEL_NAME
 # output
-2019-02-28 16:09:14.982 KST [common.tools.configtxgen] main -> INFO 001 Loading configuration
-2019-02-28 16:09:15.005 KST [common.tools.configtxgen.localconfig] Load -> INFO 002 Loaded configuration: /tmp/fabric-samples/first-network/configtx.yaml
-2019-02-28 16:09:15.026 KST [common.tools.configtxgen.localconfig] completeInitialization -> INFO 003 orderer type: solo
-2019-02-28 16:09:15.026 KST [common.tools.configtxgen.localconfig] LoadTopLevel -> INFO 004 Loaded configuration: /tmp/fabric-samples/first-network/configtx.yaml
-2019-02-28 16:09:15.026 KST [common.tools.configtxgen] doOutputChannelCreateTx -> INFO 005 Generating new channel configtx
-2019-02-28 16:09:15.027 KST [common.tools.configtxgen] doOutputChannelCreateTx -> INFO 006 Writing new channel tx
+# 2019-02-28 16:09:14.982 KST [common.tools.configtxgen] main -> INFO 001 Loading configuration
+# 2019-02-28 16:09:15.005 KST [common.tools.configtxgen.localconfig] Load -> INFO 002 Loaded configuration: /tmp/fabric-samples/first-network/configtx.yaml
+# 2019-02-28 16:09:15.026 KST [common.tools.configtxgen.localconfig] completeInitialization -> INFO 003 orderer type: solo
+# 2019-02-28 16:09:15.026 KST [common.tools.configtxgen.localconfig] LoadTopLevel -> INFO 004 Loaded configuration: /tmp/fabric-samples/first-network/configtx.yaml
+# 2019-02-28 16:09:15.026 KST [common.tools.configtxgen] doOutputChannelCreateTx -> INFO 005 Generating new channel configtx
+# 2019-02-28 16:09:15.027 KST [common.tools.configtxgen] doOutputChannelCreateTx -> INFO 006 Writing new channel tx
 ```
 
 * Anchor peer 설정(다른 조직간 통신)  
-TwoOrgsChannel을 참조하여 각 조직의 Anchor peer 설정 트랜잭셔 생성
+TwoOrgsChannel을 참조하여 각 조직의 Anchor peer 설정 트랜잭션 생성
 ```bash
 # Anchor peer for Org1
 $ ../bin/configtxgen -profile TwoOrgsChannel -outputAnchorPeersUpdate ./channel-artifacts/Org1MSPanchors.tx -channelID $CHANNEL_NAME -asOrg Org1MSP
@@ -144,8 +145,8 @@ export CHANNEL_NAME=mychannel
 
 peer# peer channel create -o orderer.example.com:7050 -c $CHANNEL_NAME -f ./channel-artifacts/channel.tx --tls --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem
 # output
-2019-02-28 09:25:11.612 UTC [channelCmd] InitCmdFactory -> INFO 001 Endorser and orderer connections initialized
-2019-02-28 09:25:11.657 UTC [cli.common] readBlock -> INFO 002 Received block: 0
+# 2019-02-28 09:25:11.612 UTC [channelCmd] InitCmdFactory -> INFO 001 Endorser and orderer connections initialized
+# 2019-02-28 09:25:11.657 UTC [cli.common] readBlock -> INFO 002 Received block: 0
 ```
 
 * peer 채널에 조인
@@ -158,8 +159,8 @@ peer# peer channel create -o orderer.example.com:7050 -c $CHANNEL_NAME -f ./chan
 # Org1("peer0.org1.example.com")
 peer# peer channel join -b mychannel.block
 # output
-2019-02-28 09:28:30.363 UTC [channelCmd] InitCmdFactory -> INFO 001 Endorser and orderer connections initialized
-2019-02-28 09:28:30.399 UTC [channelCmd] executeJoin -> INFO 002 Successfully submitted proposal to join channel
+# 2019-02-28 09:28:30.363 UTC [channelCmd] InitCmdFactory -> INFO 001 Endorser and orderer connections initialized
+# 2019-02-28 09:28:30.399 UTC [channelCmd] executeJoin -> INFO 002 Successfully submitted proposal to join channel
 
 # Org2("peer0.org1.example.com")
 peer# CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp CORE_PEER_ADDRESS=peer0.org2.example.com:7051 CORE_PEER_LOCALMSPID="Org2MSP" CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt peer channel join -b mychannel.block
@@ -170,14 +171,14 @@ peer# CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer
 # Org1(peer0.org1.example.com)
 peer# peer channel update -o orderer.example.com:7050 -c $CHANNEL_NAME -f ./channel-artifacts/Org1MSPanchors.tx --tls --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem
 # output
-2019-03-03 14:41:30.224 UTC [channelCmd] InitCmdFactory -> INFO 001 Endorser and orderer connections initialized
-2019-03-03 14:41:30.242 UTC [channelCmd] update -> INFO 002 Successfully submitted channel update
+# 2019-03-03 14:41:30.224 UTC [channelCmd] InitCmdFactory -> INFO 001 Endorser and orderer connections initialized
+# 2019-03-03 14:41:30.242 UTC [channelCmd] update -> INFO 002 Successfully submitted channel update
 
 # Org2(peer0.org2.example.com)
 peer# CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp CORE_PEER_ADDRESS=peer0.org2.example.com:7051 CORE_PEER_LOCALMSPID="Org2MSP" CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt peer channel update -o orderer.example.com:7050 -c $CHANNEL_NAME -f ./channel-artifacts/Org2MSPanchors.tx --tls --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem
 # output
-2019-02-28 09:41:53.478 UTC [channelCmd] InitCmdFactory -> INFO 001 Endorser and orderer connections initialized
-2019-02-28 09:41:53.494 UTC [channelCmd] update -> INFO 002 Successfully submitted channel update
+# 2019-02-28 09:41:53.478 UTC [channelCmd] InitCmdFactory -> INFO 001 Endorser and orderer connections initialized
+# 2019-02-28 09:41:53.494 UTC [channelCmd] update -> INFO 002 Successfully submitted channel update
 ```
 
 ### Install Chaincode
@@ -186,15 +187,15 @@ peer# CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer
 # Org1
 peer# peer chaincode install -n mycc -v 1.0 -p github.com/chaincode/chaincode_example02/go/
 # output
-2019-02-28 09:46:37.093 UTC [chaincodeCmd] checkChaincodeCmdParams -> INFO 001 Using default escc
-2019-02-28 09:46:37.093 UTC [chaincodeCmd] checkChaincodeCmdParams -> INFO 002 Using default vscc
-2019-02-28 09:46:37.299 UTC [chaincodeCmd] install -> INFO 003 Installed remotely response:<status:200 payload:"OK" >
+# 2019-02-28 09:46:37.093 UTC [chaincodeCmd] checkChaincodeCmdParams -> INFO 001 Using default escc
+# 2019-02-28 09:46:37.093 UTC [chaincodeCmd] checkChaincodeCmdParams -> INFO 002 Using default vscc
+# 2019-02-28 09:46:37.299 UTC [chaincodeCmd] install -> INFO 003 Installed remotely response:<status:200 payload:"OK" >
 # Org2
 peer# CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp CORE_PEER_ADDRESS=peer0.org2.example.com:7051 CORE_PEER_LOCALMSPID="Org2MSP" CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt peer chaincode install -n mycc -v 1.0 -p github.com/chaincode/chaincode_example02/go/
 # output
-2019-02-28 09:52:20.064 UTC [chaincodeCmd] checkChaincodeCmdParams -> INFO 001 Using default escc
-2019-02-28 09:52:20.064 UTC [chaincodeCmd] checkChaincodeCmdParams -> INFO 002 Using default vscc
-2019-02-28 09:52:20.267 UTC [chaincodeCmd] install -> INFO 003 Installed remotely response:<status:200 payload:"OK" >
+# 2019-02-28 09:52:20.064 UTC [chaincodeCmd] checkChaincodeCmdParams -> INFO 001 Using default escc
+# 2019-02-28 09:52:20.064 UTC [chaincodeCmd] checkChaincodeCmdParams -> INFO 002 Using default vscc
+# 2019-02-28 09:52:20.267 UTC [chaincodeCmd] install -> INFO 003 Installed remotely response:<status:200 payload:"OK" >
 ```
 * Node.js
 ```bash
@@ -210,8 +211,8 @@ peer# peer chaincode install -n mycc -v 1.0 -l java -p /opt/gopath/src/github.co
 ```bash
 peer# peer chaincode instantiate -o orderer.example.com:7050 --tls --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C $CHANNEL_NAME -n mycc -v 1.0 -c '{"Args":["init","a", "100", "b","200"]}' -P "AND ('Org1MSP.peer','Org2MSP.peer')"
 # output
-2019-02-28 09:59:39.755 UTC [chaincodeCmd] checkChaincodeCmdParams -> INFO 001 Using default escc
-2019-02-28 09:59:39.755 UTC [chaincodeCmd] checkChaincodeCmdParams -> INFO 002 Using default vscc
+# 2019-02-28 09:59:39.755 UTC [chaincodeCmd] checkChaincodeCmdParams -> INFO 001 Using default escc
+# 2019-02-28 09:59:39.755 UTC [chaincodeCmd] checkChaincodeCmdParams -> INFO 002 Using default vscc
 ```
 * Node.js
 ```bash
@@ -223,29 +224,67 @@ peer# peer chaincode instantiate -o orderer.example.com:7050 --tls --cafile /opt
 ```
 
 ### Test
-* Query  
-a계정 잔액조회
+mychannel에 참여한 조직 Org1, Org2의 peer0 노드간 금액 전송 및 확인 후 채널에 추가로 참여한 peer에서 계정을 조회한다.  
+#### 시나리오
+1. [Org1-peer0] 에서 a계정 잔액조회
+2. [Org1-peer0] 에서 a에서 b에게 10 전송
+3. [Org1-peer0] 에서 전송 후 a계정 잔액조회
+4. [Org1-peer0] 에서 전송 후 b계정 잔액조회
+5. [Org2-peer0] 에서 b계정 잔액조회
+6. [Org2-peer1] 에서 b계전 잔액조회 (mychannel에 참여하지 않은 노드)
+7. [Org2-peer1] 에서 install chaincode, mychannel에 참여
+8. [Org2-peer1] 에서 b계정 잔액조회
+
+1 [Org1-peer0] 에서 a계정 잔액조회
 ```bash
 peer# peer chaincode query -C $CHANNEL_NAME -n mycc -c '{"Args":["query","a"]}'
 # output
-100
+# 100
 ```
-* Invoke  
-a에서 b에게 10 전달
+2 [Org1-peer0] 에서 a에서 b에게 10 전송
 ```bash
 peer# peer chaincode invoke -o orderer.example.com:7050 --tls true --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C $CHANNEL_NAME -n mycc --peerAddresses peer0.org1.example.com:7051 --tlsRootCertFiles /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt --peerAddresses peer0.org2.example.com:7051 --tlsRootCertFiles /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt -c '{"Args":["invoke","a","b","10"]}'
 ```
-* Query  
-a계정 잔액조회
+3 [Org1-peer0] 에서 전송 후 a계정 잔액조회
 ```bash
 peer# peer chaincode query -C $CHANNEL_NAME -n mycc -c '{"Args":["query","a"]}'
 # output
-90
+# 90
 ```
-* Query  
-b계정 잔액조회
+4 [Org1-peer0] 에서 전송 후 b계정 잔액조회
 ```bash
 peer# peer chaincode query -C $CHANNEL_NAME -n mycc -c '{"Args":["query","b"]}'
 # output
-210
+# 210
+```
+5 [Org2-peer0] 에서 b계정 잔액조회
+```bash
+peer# 
+peer CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp CORE_PEER_ADDRESS=peer0.org2.example.com:7051 CORE_PEER_LOCALMSPID="Org2MSP" CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt peer chaincode query -C $CHANNEL_NAME -n mycc -c '{"Args":["query","b"]}'
+# output
+# 210
+```
+6 [Org2-peer1] 에서 b계전 잔액조회 (mychannel에 참여하지 않은 노드)
+```bash
+peer# 
+CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp CORE_PEER_ADDRESS=peer1.org2.example.com:7051 CORE_PEER_LOCALMSPID="Org2MSP" CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/peers/peer1.org2.example.com/tls/ca.crt peer chaincode query -C $CHANNEL_NAME -n mycc -c '{"Args":["query","b"]}'
+# output
+# Error: error endorsing query: rpc error: code = Unknown desc = access denied: channel [mychannel] creator org [Org2MSP] - proposal response: <nil>
+```
+7 [Org2-peer1] 에서 install chaincode, mychannel에 참여
+```bash
+# install chain code
+peer# 
+CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp CORE_PEER_ADDRESS=peer1.org2.example.com:7051 CORE_PEER_LOCALMSPID="Org2MSP" CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/peers/peer1.org2.example.com/tls/ca.crt peer chaincode install -n mycc -v 1.0 -p github.com/chaincode/chaincode_example02/go/
+ 
+# join mychannel
+peer#
+CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp CORE_PEER_ADDRESS=peer1.org2.example.com:7051 CORE_PEER_LOCALMSPID="Org2MSP" CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/peers/peer1.org2.example.com/tls/ca.crt peer channel join -b mychannel.block
+```
+8 [Org2-peer1] 에서 b계정 잔액조회
+```bash
+peer# 
+CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp CORE_PEER_ADDRESS=peer1.org2.example.com:7051 CORE_PEER_LOCALMSPID="Org2MSP" CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/peers/peer1.org2.example.com/tls/ca.crt peer chaincode query -C $CHANNEL_NAME -n mycc -c '{"Args":["query","b"]}'
+# output
+# 210
 ```
