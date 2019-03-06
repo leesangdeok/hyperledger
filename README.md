@@ -34,12 +34,12 @@ $ curl -sSL http://bit.ly/2ysbOFE | bash -s 1.4.0
 ### path 환경설정
 ```bash
 # export PATH=<path to download location>/bin:$PATH
-$ export PATH=/tmp/fabric-samples/bin:$PATH
+$ export PATH=$PWD/fabric-samples/bin:$PATH
 ```
 
 ### Generate Network Artifacts
 ```bash
-$ cd /tmp/fabric-samples/first-network
+$ cd fabric-samples/first-network
 $ ./byfn.sh generate
 ```
 
