@@ -9,11 +9,11 @@
 ### Go Programming Language
 * Go version 1.11.x is required
 ```bash
-$ wget -P /usr/local https://dl.google.com/go/go1.11.5.darwin-amd64.tar.gz (mac)
+$ wget -P /Users/fabric/ https://dl.google.com/go/go1.11.5.darwin-amd64.tar.gz (mac)
 
 $ tar -xzf go1.11.5.darwin-amd64.tar
 
-$ export PATH=$PATH:/usr/local/go/bin
+$ export PATH=$PATH:/Users/fabric/go/bin
 
 $ go version
 ```
@@ -28,6 +28,19 @@ $ go version
 
 ### Install Samples, Binaries and Docker Images
 ```bash
+$ cd /Users/fabric
+ 
+$ mkdir gopath
+ 
+$ export GOPATH=/Users/fabric/gopath
+# go디렉토리에 Golang을 설치하고 path설정
+$ export GOROOT=/Users/fabric/go
+$ export PATH=$PATH:$GOROOT/bin
+ 
+$ mkdir -p $GOPATH/src/github.com/hyperledger
+
+$ cd $GOPATH/src/github.com/hyperledger
+
 $ curl -sSL http://bit.ly/2ysbOFE | bash -s 1.4.0
 ```
 
