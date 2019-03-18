@@ -172,13 +172,14 @@ fabric network에 접속하고 컨트랙트의 실행을 위해서 Fabric Go SDK
 3. SimpleStorage DAPP  
 Fabric에서 실행 가능한 DAPP을 생성한다.
 
-  * Proxy 연결하기
-    * node와 web3 설치
+  * Proxy 연결하기  
+  
+~ node와 web3 설치
   ```bash
   npm install web3@0.20.2
   ```
   
-    * 설치 후 web3연동  
+~ 설치 후 web3연동    
   ```bash
   Web3 = require('web3')
   ...
@@ -186,12 +187,12 @@ Fabric에서 실행 가능한 DAPP을 생성한다.
   ...
   ```
   
-    * account address 확인
+~ account address 확인
   ```bash
   web3.eth.accounts
   ```
   
-    * default account 세팅
+~ default account 세팅  
   tx 실행을 위해서 web3.eth.defaultAccount가 세팅되어야 한다.
   ```bash
   web3.eth.defaultAccount = web3.eth.account[0]
