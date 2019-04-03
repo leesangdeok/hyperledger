@@ -1,6 +1,6 @@
 # Sawtooth-Seth
 
-Sawtooth 프로젝트에서 분리되어 별도로 페키징된 Seth를 사용하기 가장 좋은 방법은 docker-compose를 이용하는 것이다. 
+Seth는 Sawtooth 프로젝트에서 분리되어 별도로 페키징되었고 사용하기 가장 좋은 방법은 docker-compose를 이용하는 것이다. 
 
 ## Prerequisites
 * Docker and docker compose
