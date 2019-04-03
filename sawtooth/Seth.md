@@ -95,7 +95,7 @@ root로 해당 컨테이너에 접속해야 되고 ``openssl`` 커맨드로 새�
     }
 ```
 
-계정의 address, nonce 정보 확인
+* 계정의 address, nonce 정보 확인
 ```bash
     #seth show account {address}
     $ seth show account f6fe0c0cd896f1840eff12ebd53e44f45b043409
@@ -106,3 +106,5 @@ root로 해당 컨테이너에 접속해야 되고 ``openssl`` 커맨드로 새�
     Nonce  : 1
     Perms  : +root,+send,+call,+contract,+account
 ```
+
+## Contract
