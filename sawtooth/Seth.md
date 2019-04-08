@@ -203,11 +203,9 @@ sawtooth-seth 디렉토리의 컨트랙트 사용하기
 
 ### Calling Contracts
 
-배포된 컨트랙트 호출을 위해 컨트랙트 address, 호출을 위해 input data가 필요하다.  
-컨트랙트의 function을 사용하기 위해 Solidity는 `Application Binary Interface`_ 또는 ABI와  
-호출 시 필요한 args를 사용한다.  
-컨트랙트 호출을 위한 여러 방법 중 하나가 ``seth`` client(`ethereumjs-abi`_ library) 이고  
-seth docker container에 설치되어 있다.
+배포된 컨트랙트 호출을 위해 컨트랙트 address, 호출을 위해 input data가 필요하다. 컨트랙트의 function을 사용하기 위해  
+Solidity는 [Application Binary Interface](https://solidity.readthedocs.io/en/develop/abi-spec.html) 또는 컨트랙트 실행과 function 호출에 필요한 args를 정의한 ABI를 사용한다.  
+컨트랙트 호출 방법 중 하나인 ``seth`` client([ethereumjs-abi library](https://www.npmjs.com/package/ethereumjs-abi))는 seth docker container에 설치되어 있다.
 
 .. _Application Binary Interface: https://solidity.readthedocs.io/en/develop/abi-spec.html  
 .. _ethereumjs-abi: https://www.npmjs.com/package/ethereumjs-abi
