@@ -10,7 +10,7 @@
 * Download & Build
 ```bash
 # GOPATH=/Users/test/gopath
-git clone github.com/hyperledger/burrow
+git clone https://github.com/hyperledger/burrow.git
 cd $GOPATH/src/github.com/hyperledger/burrow
 make build
 ```
