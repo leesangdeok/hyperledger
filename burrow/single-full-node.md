@@ -41,6 +41,7 @@ burrow configure --genesis-spec=genesis-spec.json > burrow.toml
 ```bash
 # To select our validator address by index in the GenesisDoc
 burrow start --validator-index=0
+burrow start --config burrow.toml --validator-index=0
 # Or to select based on address directly (substituting the example address below with your validator's):
 burrow start --validator-address=BE584820DC904A55449D7EB0C97607B40224B96E
 ```
