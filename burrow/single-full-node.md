@@ -1,8 +1,9 @@
 # Burrow
+Hyperledger Burrow is a permissioned Ethereum smart-contract blockchain node. It executes Ethereum EVM smart contract code (usually written in Solidity) on a permissioned virtual machine. Burrow provides transaction finality and high transaction throughput on a proof-of-stake Tendermint consensus engine.
 
 ## Prerequisites
 
-* [go version 1.11.9](https://golang.org/dl/) or above
+* install [go](https://golang.org/dl/)
 * set `$GOPATH`
 
 ## Install
@@ -53,7 +54,7 @@ rm -rf .burrow
 
 ## Deploy Contracts
 컨트랙트 배포를 위해서 `solidity contracts` 와 `deploy.yaml` 두 파일이 필요하고 Solidity code 컴파일을 위해서 [solc binary](https://solidity.readthedocs.io/en/v0.4.21/installing-solidity.html) 가 설치되어야 한다.
-예제인 [deploy.yaml](https://github.com/leesangdeok/hyperledger/blob/master/burrow/example/deploy.yaml) 와 [storage.sol](https://github.com/leesangdeok/hyperledger/blob/master/burrow/example/storage.sol)이 준비되면 디렉토리 내 다른 *.sol 이나 *.yaml 파일은 없어야 한다.
+예제인 [deploy.yaml](https://github.com/leesangdeok/hyperledger/blob/master/burrow/example/deploy.yaml) 와 [simplestorage.sol](https://github.com/leesangdeok/hyperledger/blob/master/burrow/example/simplestorage.sol)이 준비되면 디렉토리 내 다른 *.sol 이나 *.yaml 파일은 없어야 한다.
 
 * 컨트랙트 배포
 `burrow.toml` 에 정의된 `ValidatorAddress` 중 컨트랙트 생성 권한이 있는 address를 사용한다.
@@ -62,4 +63,25 @@ burrow deploy --address 414EADA263040BFD14E3545C3A8832A6B34494A6 deploy.yaml
 
 #output
 #deploy.output.json
+```
+
+## Send transactions to a burrow network
+[@monax/burrow](https://www.npmjs.com/package/@monax/burrow) 자바스립트 라이브러리를 이용하여 burrow GRPC를 통해 Hyperledger Burrow와 통신한다.
+
+* Prerequisites
+  * Burrow version 0.20 or higher
+  * Node.js version 7 or higher
+  
+* @monax/burrow 설치
+```bash
+npm install @monax/burrow
+```
+
+* burrow와 통신을 위한 파일 준비
+```javascript
+const monax = require('@monax/burrow');
+let chainURL = 'localhost:10997'; //GRPC 포트
+const abiFile = './burrow/simplestorage.bin';
+const deployFile = './burrow/deploy.output.json';
+const accountFile = './burrow/account.json'; // 사이닝을 위하 계정의 [address](https://github.com/leesangdeok/hyperledger/blob/master/burrow/example/account.json)
 ```
