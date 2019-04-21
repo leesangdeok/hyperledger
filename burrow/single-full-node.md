@@ -78,10 +78,11 @@ npm install @monax/burrow
 ```
 
 * burrow와 통신을 위한 파일 준비
+배포후 생성된 simplestorage.bin(abi), deploy.output.json, [account.json](https://github.com/leesangdeok/hyperledger/blob/master/burrow/example/account.json) 준비
 ```javascript
 const monax = require('@monax/burrow');
 let chainURL = 'localhost:10997'; //GRPC 포트
 const abiFile = './burrow/simplestorage.bin';
 const deployFile = './burrow/deploy.output.json';
-const accountFile = './burrow/account.json'; // 사이닝을 위하 계정의 [address](https://github.com/leesangdeok/hyperledger/blob/master/burrow/example/account.json)
+const accountFile = './burrow/account.json'; // 사이닝을 위하 계정의 address
 ```
