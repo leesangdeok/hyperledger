@@ -44,7 +44,7 @@ burrow configure --genesis-spec=genesis-spec.json > burrow.toml
 burrow start --validator-index=0
 burrow start --config burrow.toml --validator-index=0
 # Or to select based on address directly (substituting the example address below with your validator's):
-burrow start --validator-address=BE584820DC904A55449D7EB0C97607B40224B96E
+burrow start --validator-address=414EADA263040BFD14E3545C3A8832A6B34494A6
 ```
 * node 재설정
 .burrow 디렉토리 삭제로 node 재설정이 가능하다.
