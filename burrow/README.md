@@ -14,13 +14,13 @@ Application Binary Interface (ABI): Transactions need to be formulated in a bina
 API Gateway: Burrow exposes REST and JSON-RPC endpoints to interact with the blockchain network and the application state through broadcasting transactions, or querying the current state of the application. Websockets allow subscribing to events, which is particularly valuable as the consensus engine and smart contract application can give unambiguously finalised results to transactions within one blocktime of about one second.
 
 ## Key Characteristics
-### Burrow has three primary aims:
-* To be a good compliant and simple EVM library friendly towards integrators (see for example https://github.com/hyperledger/sawtooth-seth)
-* To be a fast, light, lean single-process full Tendermint/EVM permissioned ledger with transaction finality
-* To provide a practical base for EVM extensions in a many-chain world
-### Burrow is not trying to be:
-* Highly pluggable (see Sawtooth or Fabric)
-* Hard to deploy
+### Burrow 의 3가지 목표:
+* 통합체를 위한 호환성이 뛰어나고 단순한 EVM 라이브러리 제공 (예 [sawtooth-seth](https://github.com/hyperledger/sawtooth-seth))
+* 트랜잭션 완결성을 갖춘 Tendermint/EVM의 허가된 전체 원장을 빠르고 가볍고 슬림한 단일 프로세스
+* 다양한 블록체인 세계에 EVM 확장을 위한 실질적인 기반을 제공 
+### Burrow 가 지양하는 것 :
+* 고도로 플러그형 (Sawtooth 나 Fabric 처럼)
+* 배포의 어려움
 
 
 ## Minimum requirements
