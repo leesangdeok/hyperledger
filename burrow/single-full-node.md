@@ -1,5 +1,4 @@
 # Burrow
-Hyperledger Burrow is a permissioned Ethereum smart-contract blockchain node. It executes Ethereum EVM smart contract code (usually written in Solidity) on a permissioned virtual machine. Burrow provides transaction finality and high transaction throughput on a proof-of-stake Tendermint consensus engine.
 
 ## Prerequisites
 
@@ -44,7 +43,7 @@ burrow configure --genesis-spec=genesis-spec.json > burrow.toml
 burrow start --validator-index=0
 burrow start --config burrow.toml --validator-index=0
 # Or to select based on address directly (substituting the example address below with your validator's):
-burrow start --validator-address=414EADA263040BFD14E3545C3A8832A6B34494A6
+burrow start --validator-address=BE584820DC904A55449D7EB0C97607B40224B96E
 ```
 * node 재설정
 .burrow 디렉토리 삭제로 node 재설정이 가능하다.
@@ -81,8 +80,24 @@ npm install @monax/burrow
 배포후 생성된 simplestorage.bin(abi), deploy.output.json, [account.json](https://github.com/leesangdeok/hyperledger/blob/master/burrow/example/account.json) 준비
 ```javascript
 const monax = require('@monax/burrow');
-let chainURL = 'localhost:10997'; //GRPC 포트
-const abiFile = './burrow/simplestorage.bin';
-const deployFile = './burrow/deploy.output.json';
+
+let chainURL = 'localhost:10997'; // GRPC 포트
+const abiFile = './burrow/simplestorage.bin'; // 바이트코드
+const deployFile = './burrow/deploy.output.json'; // ABI
 const accountFile = './burrow/account.json'; // 사이닝을 위하 계정의 address
+
+let chain = burrow.createInstance(chainURL, account.Address, {objectReturn: true}); // 인스턴스 생성
+let store = chain.contracts.new(<ABI>, null, <CONTRACT-ADDRESS>); // simplestorage 컨트랙트 자바스크립트로 랩핑
+
+// 솔리디티 get 메소드 호출
+router.get('/', (req, res) => store.get()
+    .then(ret => res.send(ret.values))
+    .catch(err => res.send(handleError(err))));
+
+// 솔리디티 set 메소드 호출
+router.post('/', (req, res) => param(req.body, 'value')
+    .then(value => asInteger(value))
+    .then(value => store.set(value).then(() => value))
+    .then(value => res.send({value: value, success: true}))
+    .catch(err => res.send(handleError(err))));
 ```
