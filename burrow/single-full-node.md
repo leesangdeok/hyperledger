@@ -43,7 +43,7 @@ burrow configure --genesis-spec=genesis-spec.json > burrow.toml
 burrow start --validator-index=0
 burrow start --config burrow.toml --validator-index=0
 # Or to select based on address directly (substituting the example address below with your validator's):
-burrow start --validator-address=BE584820DC904A55449D7EB0C97607B40224B96E
+burrow start --validator-address=414EADA263040BFD14E3545C3A8832A6B34494A6
 ```
 * node 재설정
 .burrow 디렉토리 삭제로 node 재설정이 가능하다.
@@ -64,8 +64,16 @@ burrow deploy --address 414EADA263040BFD14E3545C3A8832A6B34494A6 deploy.yaml
 #deploy.output.json
 ```
 
-## Send transactions to a burrow network
+## Send transactions to a burrow network1
 [@monax/burrow](https://www.npmjs.com/package/@monax/burrow) 자바스립트 라이브러리를 이용하여 burrow GRPC를 통해 Hyperledger Burrow와 통신한다.
+
+* 작업순서
+  * simplestorage.sol 작성
+  * simplestorage.sol 에 해당하는 deploy.yaml 작성
+  * CLI에서 배포 후 생성된 deploy.output.json, simplestorage.bin을 dapp에서 로드
+  * @monax/burrow 설치
+  * GRPC 연결 및 컨트랙트 호출 코드 작성
+  * 컨트랙트 호출
 
 * Prerequisites
   * Burrow version 0.20 or higher
@@ -106,4 +114,70 @@ router.post('/', (req, res) => param(req.body, 'value')
 
 
 ## Send transactions to a burrow network2
+[바로 위 예제](https://github.com/leesangdeok/hyperledger/blob/master/burrow/single-full-node.md#send-transactions-to-a-burrow-network1)의 경우 다음과 같은 어려움들이 존재한다. 
+* 컨트랙트 작성 후 별도로 해당 컨트랙트에 해당하는 deploy.yaml 작성해야 한다. (컨트랙트 작성이 복잡할 수록 deploy.yaml 작성도 복잡해진다)
+* deploy.yaml 작성하고 배포가 성공했더라도 정상적인 호출 확인이 어렵다.
+* deploy.yaml작성과 배포에 많은 리소스가 들어갈 것으로 예상된다. 
 
+### 더 나은 방법 찾아보기 
+[hyperledger burrow wiki](https://wiki.hyperledger.org/display/burrow)의 Key Characteristics에 burrow는 `Hard to deploy` 지양한다고 설명하고 있다. 지금까지 어려운 방법으로 테스트를 진행했지만 믿어보고 진행하도록 하자
+
+### DApp에서 컨트랙트 배포 및 호출하기
+작업 절차 순서는 별다른 차이가 없지만 deploy.yaml의 작성 여부가 큰 차이를 보인다.
+
+* 작업순서
+  * simplestorage.sol 작성
+  * solc 나 [remix](https://remix.ethereum.org)를 통한 컴파일
+  * 컴파일 후 생성된 ABI, bytecode dapp에서 로드
+  * @monax/burrow 설치
+  * GRPC 연결 및 컨트랙트 호출 코드 작성
+  * 컨트랙트 호출
+  
+* 인스턴스 생성하기
+```javascript
+const monax = require('@monax/burrow');
+let burrowURL = 'localhost:10997';
+const accountFile = './burrow/account.json';
+let burrow = monax.createInstance(burrowURL, account.Address, {objectReturn: true});
+```
+
+* 컨트랙트 배포
+```javascript
+let contractAddress;
+const abi = [{....}]
+const bytecode = '6080604052......';
+let contract = burrow.contracts.new(abi, bytecode);
+
+router.post('/deploy', async (req, res) => {
+    contractAddress  = await contract._constructor('contract');
+    console.log(">>>>>> contract address : " + contractAddress);
+    res.send(contractAddress);
+});
+```
+
+* 컨트랙트 호출
+```javascript
+# 컨트랙트의 set 호출
+router.post('/set', async (req, res) => {
+    try {
+        let result  = await contract.set.at(contractAddress, req.body.value)
+        res.send(result);
+    } catch (e) {
+        console.log(e);
+        res.send(e);
+    }
+});
+
+# 컨트랙트의 get 호출
+router.post('/get', async (req, res) => {
+    try {
+        let result  = await contract.get.at('contractAddress')
+        res.send(result);
+    } catch (e) {
+        console.log(e);
+        res.send(e);
+    }
+});
+```
+
+참고 : [deploy-contracts-with-dapp.js](https://github.com/leesangdeok/hyperledger/blob/master/burrow/example/deploy-contracts-with-dapp.js)
