@@ -5,7 +5,7 @@ var express = require('express');
 var router = express.Router();
 
 // Burrow address
-let chainURL = '54.180.125.245:10997';
+let chainURL = 'localhost:10997';
 const abiFile = './burrow/simplestorage/simplestorage.bin';
 const deployFile = './burrow/simplestorage/deploy.output.json';
 const accountFile = './burrow/account.json';
