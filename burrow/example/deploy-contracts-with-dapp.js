@@ -4,7 +4,7 @@ var express = require('express');
 var router = express.Router();
 
 // Burrow address (GRPC)
-let burrowURL = '54.180.125.245:10997';
+let burrowURL = 'localhost:10997';
 const accountFile = './burrow/account.json';
 
 function slurp(file) {
