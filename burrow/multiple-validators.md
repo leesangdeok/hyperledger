@@ -33,7 +33,7 @@
 
 #### 첫 번째 노드 실행하기
 ```bash
-burrow start --config=burrow000.toml
+burrow start --config=burrow000.toml &
 ```
 
 burrow000.log에서 `Blockpool has no peers` 확인
@@ -41,12 +41,12 @@ burrow000.log에서 `Blockpool has no peers` 확인
 
 #### 두 번째 노드 실행하기
 ```bash
-burrow start --config=burrow001.toml
+burrow start --config=burrow001.toml &
 ```
 
 #### 세 번째 노드 실행하기
 ```bash
-burrow start --config=burrow002.toml
+burrow start --config=burrow002.toml &
 ```
 연결이 성공하면 빈 블록이 자동으로`Sending vote message`와`Finalizing commit of block with 0 txs`를 보게 될 것입니다. 
 
