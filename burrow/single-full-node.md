@@ -142,6 +142,7 @@ let burrow = monax.createInstance(burrowURL, account.Address, {objectReturn: tru
 ```
 
 * 컨트랙트 배포
+  * deploy test : curl -H "Content-Type: application/json" -X POST http://127.0.0.1:3000/api/deploy
 ```javascript
 let contractAddress;
 const abi = [{....}]
@@ -156,8 +157,10 @@ router.post('/deploy', async (req, res) => {
 ```
 
 * 컨트랙트 호출
+  * set test : curl -d '{"value": 2000}' -H "Content-Type: application/json" -X POST http://127.0.0.1:3000/api/set
+  * get test : curl http://127.0.0.1:3000/api/get
 ```javascript
-# 컨트랙트의 set 호출
+// 컨트랙트의 set 호출
 router.post('/set', async (req, res) => {
     try {
         let result  = await contract.set.at(contractAddress, req.body.value)
@@ -168,8 +171,8 @@ router.post('/set', async (req, res) => {
     }
 });
 
-# 컨트랙트의 get 호출
-router.post('/get', async (req, res) => {
+// 컨트랙트의 get 호출
+router.get('/get', async (req, res) => {
     try {
         let result  = await contract.get.at('contractAddress')
         res.send(result);
