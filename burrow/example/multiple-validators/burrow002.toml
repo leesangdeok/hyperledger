@@ -1,0 +1,141 @@
+ValidatorAddress = "82D2371D12CD3AC610BAE60F512CFE618A04ED7D"
+BurrowDir = "burrow002"
+
+[GenesisDoc]
+  GenesisTime = 2019-04-26T06:22:03Z
+  ChainName = "BurrowChain_CC48E7"
+  [GenesisDoc.Params]
+    ProposalThreshold = 3
+  [GenesisDoc.GlobalPermissions]
+    [GenesisDoc.GlobalPermissions.Base]
+      Perms = "send | call | createContract | createAccount | bond | name | proposal | input | batch | hasBase | hasRole"
+      SetBit = "root | send | call | createContract | createAccount | bond | name | proposal | input | batch | hasBase | setBase | unsetBase | setGlobal | hasRole | addRole | removeRole"
+
+  [[GenesisDoc.Accounts]]
+    Address = "2CDA085AFA40D116A99791A119D4A1C45514C81A"
+    PublicKey = "{\"CurveType\":\"ed25519\",\"PublicKey\":\"4BE7727C9D6A790799BEDEF701A9C2620F6E8AC394B60E759FBC47A909981A5E\"}"
+    Amount = 99999999999999
+    Name = "Full_0"
+    [GenesisDoc.Accounts.Permissions]
+      [GenesisDoc.Accounts.Permissions.Base]
+        Perms = "root | send | call | createContract | createAccount | bond | name | proposal | input | batch | hasBase | setBase | unsetBase | setGlobal | hasRole | addRole | removeRole"
+        SetBit = "root | send | call | createContract | createAccount | bond | name | proposal | input | batch | hasBase | setBase | unsetBase | setGlobal | hasRole | addRole | removeRole"
+
+  [[GenesisDoc.Accounts]]
+    Address = "D97E8A45D5308841CEF5F72532A80958F06CBA26"
+    PublicKey = "{\"CurveType\":\"ed25519\",\"PublicKey\":\"13410334E271EA24426876DC5CA7EB89BDB8BC6CE91A6C0488FD21698097D5A5\"}"
+    Amount = 99999999999999
+    Name = "Full_1"
+    [GenesisDoc.Accounts.Permissions]
+      [GenesisDoc.Accounts.Permissions.Base]
+        Perms = "root | send | call | createContract | createAccount | bond | name | proposal | input | batch | hasBase | setBase | unsetBase | setGlobal | hasRole | addRole | removeRole"
+        SetBit = "root | send | call | createContract | createAccount | bond | name | proposal | input | batch | hasBase | setBase | unsetBase | setGlobal | hasRole | addRole | removeRole"
+
+  [[GenesisDoc.Accounts]]
+    Address = "82D2371D12CD3AC610BAE60F512CFE618A04ED7D"
+    PublicKey = "{\"CurveType\":\"ed25519\",\"PublicKey\":\"A322D2E6970E65BC68B841B78409289CC23908FDC9DE5D7ED4C22E45769BD3A3\"}"
+    Amount = 99999999999999
+    Name = "Full_2"
+    [GenesisDoc.Accounts.Permissions]
+      [GenesisDoc.Accounts.Permissions.Base]
+        Perms = "root | send | call | createContract | createAccount | bond | name | proposal | input | batch | hasBase | setBase | unsetBase | setGlobal | hasRole | addRole | removeRole"
+        SetBit = "root | send | call | createContract | createAccount | bond | name | proposal | input | batch | hasBase | setBase | unsetBase | setGlobal | hasRole | addRole | removeRole"
+
+  [[GenesisDoc.Validators]]
+    Address = "2CDA085AFA40D116A99791A119D4A1C45514C81A"
+    PublicKey = "{\"CurveType\":\"ed25519\",\"PublicKey\":\"4BE7727C9D6A790799BEDEF701A9C2620F6E8AC394B60E759FBC47A909981A5E\"}"
+    Amount = 9999999999
+    NodeAddress = "DE688E7F5521A419C3733EC692D7BB214B98FC6F"
+    Name = "Full_0"
+
+    [[GenesisDoc.Validators.UnbondTo]]
+      Address = "2CDA085AFA40D116A99791A119D4A1C45514C81A"
+      PublicKey = "{\"CurveType\":\"ed25519\",\"PublicKey\":\"4BE7727C9D6A790799BEDEF701A9C2620F6E8AC394B60E759FBC47A909981A5E\"}"
+      Amount = 9999999999
+
+  [[GenesisDoc.Validators]]
+    Address = "D97E8A45D5308841CEF5F72532A80958F06CBA26"
+    PublicKey = "{\"CurveType\":\"ed25519\",\"PublicKey\":\"13410334E271EA24426876DC5CA7EB89BDB8BC6CE91A6C0488FD21698097D5A5\"}"
+    Amount = 9999999999
+    NodeAddress = "0A8C431F2602E11A080CB6980A5B293D31A50113"
+    Name = "Full_1"
+
+    [[GenesisDoc.Validators.UnbondTo]]
+      Address = "D97E8A45D5308841CEF5F72532A80958F06CBA26"
+      PublicKey = "{\"CurveType\":\"ed25519\",\"PublicKey\":\"13410334E271EA24426876DC5CA7EB89BDB8BC6CE91A6C0488FD21698097D5A5\"}"
+      Amount = 9999999999
+
+  [[GenesisDoc.Validators]]
+    Address = "82D2371D12CD3AC610BAE60F512CFE618A04ED7D"
+    PublicKey = "{\"CurveType\":\"ed25519\",\"PublicKey\":\"A322D2E6970E65BC68B841B78409289CC23908FDC9DE5D7ED4C22E45769BD3A3\"}"
+    Amount = 9999999999
+    NodeAddress = "362324200C5EC4E293ED25BE6364C78BAF23EB4C"
+    Name = "Full_2"
+
+    [[GenesisDoc.Validators.UnbondTo]]
+      Address = "82D2371D12CD3AC610BAE60F512CFE618A04ED7D"
+      PublicKey = "{\"CurveType\":\"ed25519\",\"PublicKey\":\"A322D2E6970E65BC68B841B78409289CC23908FDC9DE5D7ED4C22E45769BD3A3\"}"
+      Amount = 9999999999
+
+[Tendermint]
+  Enabled = true
+  Seeds = ""
+  SeedMode = false
+  PersistentPeers = "tcp://de688e7f5521a419c3733ec692d7bb214b98fc6f@10.0.0.1:26656,tcp://0a8c431f2602e11a080cb6980a5b293d31a50113@10.0.0.2:26657"
+  ListenHost = "10.0.0.3"
+  ListenPort = "26658"
+  ExternalAddress = ""
+  AddrBookStrict = false
+  Moniker = ""
+  AuthorizedPeers = ""
+  CreateEmptyBlocks = true
+  CreateEmptyBlocksInterval = 0
+
+[Execution]
+  TimeoutFactor = 0.33
+  CallStackMaxDepth = 0
+  DataStackInitialCapacity = 1024
+  DataStackMaxDepth = 0
+
+[Keys]
+  GRPCServiceEnabled = true
+  AllowBadFilePermissions = false
+  RemoteAddress = ""
+  KeysDirectory = ".keys"
+
+[RPC]
+  [RPC.Info]
+    Enabled = true
+    ListenHost = "0.0.0.0"
+    ListenPort = "26758"
+  [RPC.Profiler]
+    Enabled = false
+    ListenHost = "127.0.0.1"
+    ListenPort = "6060"
+  [RPC.GRPC]
+    Enabled = true
+    ListenHost = "127.0.0.1"
+    ListenPort = "10997"
+  [RPC.Metrics]
+    Enabled = false
+    ListenHost = "127.0.0.1"
+    ListenPort = "9102"
+    MetricsPath = "/metrics"
+    BlockSampleSize = 100
+
+[Logging]
+  Trace = false
+  NonBlocking = false
+  [Logging.RootSink]
+    [Logging.RootSink.Transform]
+      TransformType = "filter"
+      [Logging.RootSink.Transform.FilterConfig]
+        FilterMode = "exclude_when_any_match"
+
+        [[Logging.RootSink.Transform.FilterConfig.Predicates]]
+          KeyRegex = "component"
+          ValueRegex = "tendermint"
+    [Logging.RootSink.Output]
+      OutputType = "file"
+      Format = "json"
+      Path = "burrow002.log"
