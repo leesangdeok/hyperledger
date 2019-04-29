@@ -1,5 +1,13 @@
 # Multiple validators
+
 여러 validators를 멀티 호스트로 구성한다.
+
+### 서버 구성
+서버|IP
+---|---
+validator1 | 10.0.0.1
+validator2 | 10.0.0.2
+validator3 | 10.0.0.3
 
 ### 3개의 full accounts 와 validators 로 체인 구성하기
 ```bash
@@ -14,17 +22,20 @@
  # burrow002.toml
  ```
  
-### config 수정(burrow*.toml)
-
 #### burrow*.toml
 수정할 목록
 * [Tendermint]
-  * PersistentPeers
-  * ListenHost
-  * ListenPort
+  * PersistentPeers : 연결될 peer 정보와 포트 설정
+  * ListenHost : 현재 peer의 호스트 설정
+  * ListenPort : 현재 peer의 포트 설정
 * [RPC]
-  * [RPC.Info] ListenHost, ListenPort
-  * [RPC.GRPC] ListenHost, ListenPort
+  * [RPC.Info] ListenHost, ListenPort : RPC Info. 서버정보 설정
+  * [RPC.GRPC] ListenHost, ListenPort : GRPC 서버정보 설정
+
+참고 : burrow1~3.toml
+* [burrow000.toml](https://github.com/leesangdeok/hyperledger/blob/master/burrow/example/multiple-validators/burrow000.toml)
+* [burrow001.toml](https://github.com/leesangdeok/hyperledger/blob/master/burrow/example/multiple-validators/burrow001.toml)
+* [burrow002.toml](https://github.com/leesangdeok/hyperledger/blob/master/burrow/example/multiple-validators/burrow002.toml)
    
 #### 파일 동기화
 생성된 .keys 폴더와 burrow00*.toml 파일들을 다른 호스트에 복사한다.
