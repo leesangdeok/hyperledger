@@ -51,7 +51,7 @@ burrow start --validator-address=414EADA263040BFD14E3545C3A8832A6B34494A6
 ```bash
 rm -rf .burrow
 ```
-* validators 확인 ([RPC.Info])
+* validators 확인 ([RPC.Info])  
 URL : http://127.16.51.84:26758/validators
 
 ## Deploy Contracts
@@ -89,6 +89,7 @@ npm install @monax/burrow
 
 * burrow와 통신을 위한 파일 준비
 배포후 생성된 simplestorage.bin(abi), deploy.output.json, [account.json](https://github.com/leesangdeok/hyperledger/blob/master/burrow/example/account.json) 준비
+  * account.json 내용확인 : `burrow keys list`
 ```javascript
 const monax = require('@monax/burrow');
 
