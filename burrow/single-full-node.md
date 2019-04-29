@@ -54,7 +54,7 @@ rm -rf .burrow
 
 ## Deploy Contracts
 컨트랙트 배포를 위해서 `solidity contracts` 와 `deploy.yaml` 두 파일이 필요하고 Solidity code 컴파일을 위해서 [solc binary](https://solidity.readthedocs.io/en/v0.4.21/installing-solidity.html) 가 설치되어야 한다.
-예제인 [deploy.yaml](https://github.com/leesangdeok/hyperledger/blob/master/burrow/example/deploy.yaml) 와 [simplestorage.sol](https://github.com/leesangdeok/hyperledger/blob/master/burrow/example/simplestorage.sol)이 준비되면 디렉토리 내 다른 *.sol 이나 *.yaml 파일은 없어야 한다.
+예제인 [deploy.yaml](https://github.com/leesangdeok/hyperledger/blob/master/burrow/example/deploy/deploy.yaml) 와 [simplestorage.sol](https://github.com/leesangdeok/hyperledger/blob/master/burrow/example/deploy/simplestorage.sol)이 준비되면 디렉토리 내 다른 *.sol 이나 *.yaml 파일은 없어야 한다.
 
 * 컨트랙트 배포
 `burrow.toml` 에 정의된 `ValidatorAddress` 중 컨트랙트 생성 권한이 있는 address를 사용한다.
@@ -111,7 +111,7 @@ router.post('/', (req, res) => param(req.body, 'value')
     .catch(err => res.send(handleError(err))));
 ```
 
-참고 : [burrow.js](https://github.com/leesangdeok/hyperledger/blob/master/burrow/example/burrow.js)
+참고 : [burrow.js](https://github.com/leesangdeok/hyperledger/blob/master/burrow/example/app/burrow.js)
 
 
 ## Send transactions to a burrow network2
@@ -184,4 +184,4 @@ router.get('/get', async (req, res) => {
 });
 ```
 
-참고 : [deploy-contracts-with-dapp.js](https://github.com/leesangdeok/hyperledger/blob/master/burrow/example/deploy-contracts-with-dapp.js)
+참고 : [deploy-contracts-with-dapp.js](https://github.com/leesangdeok/hyperledger/blob/master/burrow/example/app/deploy-contracts-with-dapp.js)
