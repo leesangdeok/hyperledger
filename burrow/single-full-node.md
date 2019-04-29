@@ -51,6 +51,8 @@ burrow start --validator-address=414EADA263040BFD14E3545C3A8832A6B34494A6
 ```bash
 rm -rf .burrow
 ```
+* validators 확인 ([RPC.Info])
+URL : http://127.16.51.84:26758/validators
 
 ## Deploy Contracts
 컨트랙트 배포를 위해서 `solidity contracts` 와 `deploy.yaml` 두 파일이 필요하고 Solidity code 컴파일을 위해서 [solc binary](https://solidity.readthedocs.io/en/v0.4.21/installing-solidity.html) 가 설치되어야 한다.
