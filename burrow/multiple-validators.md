@@ -63,5 +63,5 @@ burrow start --config=burrow002.toml &
 
 ### 컨센서스 상태 보기
 ```bash
-curl -s 127.0.0.1:26758/consensus
+curl -s 10.0.0.1:26758/consensus
 ```
