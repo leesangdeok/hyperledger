@@ -22,8 +22,7 @@ validator3 | 10.0.0.3
  # burrow002.toml
  ```
  
-#### burrow*.toml
-수정할 목록
+#### 수정할 목록(burrow000~002.toml)
 * [Tendermint]
   * PersistentPeers : 연결될 peer 정보와 포트 설정
   * ListenHost : 현재 peer의 호스트 설정
@@ -42,23 +41,22 @@ validator3 | 10.0.0.3
 
 ### 네트워크 시작하기
 
-#### 첫 번째 노드 실행하기
+* 첫 번째 노드 실행하기
+첫 번쨰 노드가 실행되면 burrow000.log에서 `Blockpool has no peers` 확인할 수 있고 노드가 네트워크에서 정족수 (2/3)을 채우기 위해 validator power가 충분하지 않기 때문에 두 번째 validator 참여하기를 기다리는 동안 차단된다.
 ```bash
 burrow start --config=burrow000.toml &
 ```
 
-burrow000.log에서 `Blockpool has no peers` 확인
-노드가 네트워크에서 정족수 (2/3)을 채우기 위해 유효성 alidator power가 충분하지 않기 때문에 두 번째 유효성 validator 참여하기를 기다리는 동안 차단됩니다.
-
-#### 두 번째 노드 실행하기
+* 두 번째 노드 실행하기
 ```bash
 burrow start --config=burrow001.toml &
 ```
 
-#### 세 번째 노드 실행하기
+* 세 번째 노드 실행하기
 ```bash
 burrow start --config=burrow002.toml &
 ```
+  
 연결이 성공하면 빈 블록이 자동으로`Sending vote message`와`Finalizing commit of block with 0 txs`를 보게 될 것입니다. 
 
 ### 컨센서스 상태 보기
