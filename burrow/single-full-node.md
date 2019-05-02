@@ -18,11 +18,9 @@ make build
 
 ## Configure Burrow
 
-* add an alias for burrow
+* set burrow path
 ```bash
-vi ~/.zshrc
-
-alias burrow='/Users/test/gopath/src/github.com/hyperledger/burrow/bin/burrow'
+export PATH=$PATH:$GOPATH/src/github.com/hyperledger/burrow/bin/burrow
 ```
 
 * burrow.toml 생성하기
