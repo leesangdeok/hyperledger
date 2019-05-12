@@ -12,6 +12,8 @@
 # GOPATH=/Users/test/gopath
 cd $GOPATH/src/github.com/hyperledger
 git clone https://github.com/hyperledger/burrow.git
+# We need to force enable module support to build from within GOPATH (our protobuf build depends on path, otherwise any checkout location should work)
+export GO111MODULE=on
 cd burrow
 make build
 ```
