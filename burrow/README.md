@@ -39,14 +39,10 @@ Burrow 바이너리에는 스마트컨트랙트를 지정, 구성, 실행 및 �
 * burrow configure - key생성을 포함한 특정 config 실현을 위한 명령어
 * burrow keys - 모두 독립형 키 싸이닝 데몬 그리고 키 생성 툴
 * burrow deploy - 선언적 Solidity 컴파일, 체인 관리, 테스트 및 스마트컨트랙트 배포 툴
-* burrow dump - a forensics, auditing, and data extraction tool
+* burrow dump - a forensics, auditing, and 데이터 추출 툴 
 * burrow snatives - Burrow의 'secure natives'와 상호 작용하기위한 도구 (EVM 컨트랙트처럼 호출 할 수있는 호스트 코드)
-
 * burrow start - blockchain node 시작
 
-
-Monax maintains Bosmarmot a satellite monorepo to Burrow that contains:
-Monax는 Bosmarmot을 포함하는 Burrow의 위성 모노폴을 유지한다.
-
+Monax는 Bosmarmo(버로우를 위한 툴)를 버로우에 위성 monorepo로 유지 :
 * burrow.js - Burrow 스마트컨트랙트와 상호작용을 위한 자바스크립트 클라이언트 라이브러리
 * Vent - SQL 데이터베이스 맵핑 레이어의 EVM 이벤트 (개발중)
