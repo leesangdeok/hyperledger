@@ -17,7 +17,7 @@
 ## Key Characteristics
 ### Burrow 의 3가지 목표:
 * 통합체를 위한 호환성이 뛰어나고 단순한 EVM 라이브러리 제공 (예 [sawtooth-seth](https://github.com/hyperledger/sawtooth-seth))
-* 트랜잭션 완결성을 갖춘 Tendermint/EVM의 허가된 전체 원장을 빠르고 가볍고 슬림한 단일 프로세스
+* 트랜잭션 완결성을 갖춘 Tendermint/EVM 권한이 부여 된 전체 원장으로 빠르고 가볍고 슬림한 단일 프로세스 제공
 * 멀티체인 세계에 EVM 확장을 위한 실질적인 기반을 제공 
 ### Burrow 가 지양하는 것 :
 * 고도로 플러그형 (Sawtooth 나 Fabric 처럼)
