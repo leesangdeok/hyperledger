@@ -14,13 +14,12 @@ ENV BURROW_PATH /home/$USER
 RUN addgroup -g 101 -S $USER && adduser -S -D -u 1000 $USER $USER
 WORKDIR $BURROW_PATH
 
-COPY . $BURROW_PATH
-RUN make build
+RUN wget https://github.com/hyperledger/burrow/releases/download/v0.25.1/burrow_0.25.1_Linux_x86_64.tar.gz
+RUN tar -xvf burrow_0.25.1_Linux_x86_64.tar.gz -C $BURROW_PATH
+RUN rm burrow_0.25.1_Linux_x86_64.tar.gz
 
 # set burrow path
 ENV PATH="${PATH}:$BURROW_PATH/bin"
-
-WORKDIR $BURROW_PATH/bin
 
 ADD file/modify_config.sh modify_config.sh
 ADD file/run_burrow.sh run_burrow.sh
